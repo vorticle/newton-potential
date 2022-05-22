@@ -2,7 +2,7 @@ boxpot is a library for analytically evaluating the Newton potential in
 arbitrary precision arithmetic. The mathematical background and the usage
 of the library is documented in the following article:
 
-Matthias Kirchhard and Donat Weniger. "Analytic Integration of the Newton
+Matthias Kirchhart and Donat Weniger. "Analytic Integration of the Newton
 Potential over Cuboids and an Application to Fast Multipole Methods",
 Journal of Numerical Mathematics. DOI: 10.1515/jnma-2020-0103
 
