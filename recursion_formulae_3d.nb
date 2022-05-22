@@ -1,0 +1,5389 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    184997,       5381]
+NotebookOptionsPosition[    183108,       5342]
+NotebookOutlinePosition[    183560,       5359]
+CellTagsIndexPosition[    183517,       5356]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Useful", " ", "abbreviations"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"X", "=", " ", 
+     RowBox[{"x1", "-", "y1"}]}], ";", " ", 
+    RowBox[{"Y", "=", 
+     RowBox[{"x2", "-", "y2"}]}], ";", " ", 
+    RowBox[{"Z", "=", 
+     RowBox[{"x3", "-", "y3"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[CapitalXi]", "=", 
+     RowBox[{
+      SuperscriptBox["Y", "2"], "+", 
+      SuperscriptBox["Z", "2"]}]}], ";", " ", 
+    RowBox[{"\[CapitalUpsilon]", "=", 
+     RowBox[{
+      SuperscriptBox["X", "2"], "+", 
+      SuperscriptBox["Z", "2"]}]}], ";", 
+    RowBox[{"\[CapitalTheta]", "=", 
+     RowBox[{
+      SuperscriptBox["X", "2"], "+", 
+      SuperscriptBox["Y", "2"]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"R", " ", "=", " ", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["X", "2"], "+", 
+       SuperscriptBox["Y", "2"], "+", 
+       SuperscriptBox["Z", "2"]}]]}], ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7250173872028637`*^9, 3.725017395136835*^9}, {
+  3.7250191880806007`*^9, 3.7250192326939573`*^9}, {3.725019334030444*^9, 
+  3.7250193343564672`*^9}, {3.725021142010367*^9, 3.7250211506979713`*^9}},
+ CellLabel->
+  "In[333]:=",ExpressionUUID->"fd90cec2-d54f-4bfe-b7e5-f80fd01f2298"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Linearity", " ", "of", " ", "the", " ", "integral"}], " ", "*)"}],
+   "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"a_", "-", "b_"}], ",", "x_"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{"a", ",", "x"}], "]"}], "-", 
+      RowBox[{"integrate", "[", 
+       RowBox[{"b", ",", "x"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"a_", "+", "b_"}], ",", "x_"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{"a", ",", "x"}], "]"}], "+", 
+      RowBox[{"integrate", "[", 
+       RowBox[{"b", ",", "x"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"c_", " ", "a_"}], ",", "x_"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"c", " ", 
+       RowBox[{"integrate", "[", 
+        RowBox[{"a", ",", "x"}], "]"}]}], "/;", 
+      RowBox[{"FreeQ", "[", 
+       RowBox[{"c", ",", "x"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{"a_", ",", "x_"}], "]"}], ":=", 
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"Expand", "[", 
+        RowBox[{"a", ",", "x"}], "]"}], ",", "x"}], "]"}]}], 
+    ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.725015797737754*^9, 3.725015803712356*^9}, {
+   3.7250163055372477`*^9, 3.72501636131365*^9}, {3.725016562198594*^9, 
+   3.725016569989223*^9}, {3.7250166585964937`*^9, 3.7250166919319277`*^9}, {
+   3.7250167229659147`*^9, 3.725016724690916*^9}, {3.7250169695373087`*^9, 
+   3.7250169908147783`*^9}, {3.7250170623748837`*^9, 3.725017097110239*^9}, {
+   3.725017309788147*^9, 3.725017310922296*^9}, {3.725017467186248*^9, 
+   3.725017553286919*^9}, {3.725017633710734*^9, 3.7250176774449472`*^9}, {
+   3.725017750292489*^9, 3.725017814018528*^9}, {3.725017862396515*^9, 
+   3.725017908481357*^9}, {3.725017946449367*^9, 3.7250179851683683`*^9}, {
+   3.725018046129468*^9, 3.725018109446742*^9}, {3.725018241541956*^9, 
+   3.725018242428491*^9}, {3.725018390859478*^9, 3.725018426953602*^9}, {
+   3.725018539818358*^9, 3.725018582399169*^9}, {3.725018623264544*^9, 
+   3.7250186235429583`*^9}, {3.725018877789403*^9, 3.725018932338628*^9}, {
+   3.72501908960894*^9, 3.7250190902001123`*^9}, {3.725019400565507*^9, 
+   3.725019438730907*^9}, {3.7250195402278557`*^9, 3.7250195546973753`*^9}, {
+   3.725019828975247*^9, 3.725019843725052*^9}, {3.725019920981518*^9, 
+   3.7250199565075817`*^9}, {3.725020065466917*^9, 3.7250200906493797`*^9}, {
+   3.7250201513694363`*^9, 3.725020152368334*^9}, {3.725020413598291*^9, 
+   3.7250204319726133`*^9}, {3.725020521027543*^9, 3.72502054909867*^9}, {
+   3.725020581514842*^9, 3.725020613761936*^9}, {3.7250207469525623`*^9, 
+   3.725020758360092*^9}, {3.725020813114769*^9, 3.72502081430466*^9}, {
+   3.7250209137280903`*^9, 3.725020997700534*^9}, {3.7250210404302*^9, 
+   3.725021062116824*^9}, {3.725021096589428*^9, 3.72502114076223*^9}, {
+   3.725021194362908*^9, 3.725021210128975*^9}, {3.725021343721348*^9, 
+   3.725021418047121*^9}, {3.7250214806077414`*^9, 3.725021574076243*^9}, {
+   3.725021615419551*^9, 3.7250216302835407`*^9}, {3.725021701403727*^9, 
+   3.725021719273884*^9}, {3.7250223662492523`*^9, 3.725022522206314*^9}, {
+   3.725022564657096*^9, 3.7250226875643167`*^9}, {3.725022756525817*^9, 
+   3.725022757002872*^9}, {3.725022939425795*^9, 3.7250229935529222`*^9}, {
+   3.7250230687991953`*^9, 3.7250230750301313`*^9}, {3.725023106407691*^9, 
+   3.725023109677689*^9}, {3.725023156569231*^9, 3.72502325506748*^9}, {
+   3.725023462754388*^9, 3.7250234679205513`*^9}, {3.725024017139426*^9, 
+   3.725024024473501*^9}, {3.725024090449356*^9, 3.725024099191152*^9}, {
+   3.7250241456088037`*^9, 3.725024175694004*^9}, {3.725024259439275*^9, 
+   3.7250242613331337`*^9}, {3.725024549001534*^9, 3.725024627343741*^9}, {
+   3.725024717720545*^9, 3.7250248142530603`*^9}, {3.725024897398263*^9, 
+   3.7250249345233593`*^9}, {3.725024976621642*^9, 3.72502499476254*^9}, 
+   3.725025057716342*^9, {3.725025117058148*^9, 3.7250251524403543`*^9}},
+ CellLabel->
+  "In[336]:=",ExpressionUUID->"3457a314-dae9-4201-9389-a8bba812c499"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Rules", " ", "for", " ", "the", " ", "x1", " ", "integration"}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"First", ",", " ", 
+    RowBox[{"the", " ", "actual", " ", "recursions"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["x1", "n_Integer"], "R"], ",", "x1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x1", "n"], "R"], ",", "x1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["x1", 
+          RowBox[{"n", "-", "1"}]], "R"}], 
+        RowBox[{"n", " "}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "n"}], "-", "1"}], ")"}], "y1"}], "n"], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "R"], ",", "x1"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["y1", "2"], "+", "\[CapitalXi]"}], ")"}]}], "n"], 
+        "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "2"}]], "R"], ",", "x1"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x1", "n_Integer"], "*", "R"}], ",", "x1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x1", "n"], "*", "R"}], ",", "x1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["x1", 
+          RowBox[{"n", "-", "1"}]], "*", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["X", "2"], "+", "\[CapitalXi]"}], ")"}], "*", "R"}], 
+        RowBox[{"n", "+", "2"}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "*", "n"}], "+", "1"}], ")"}], "y1"}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", "R"}], ",", "x1"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["y1", "2"], "+", "\[CapitalXi]"}], ")"}]}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "2"}]], "R"}], ",", "x1"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x1", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "x1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x1", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}]}], ",", "x1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x1", 
+          RowBox[{"n", "+", "1"}]], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], " ", "-", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["x1", 
+            RowBox[{"n", "+", "1"}]], "R"], ",", "x1"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x1", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "x1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x1", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}]}], ",", "x1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x1", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["Y", "R"], "]"}], ",", "x1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y1", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "x1"}], "]"}]}], "-", "  ", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "x1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["X", "R"], "*", 
+             FractionBox["R", "Z"]}], "]"}]}], ",", "x1"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x1", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "x1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x1", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}]}], ",", "x1"}], "]"}], "=", 
+      " \[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x1", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["Z", "R"], "]"}], ",", "x1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y1", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "x1"}], "]"}]}], "-", "  ", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "x1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Z", "R"], "*", 
+             FractionBox["X", "R"], "*", 
+             FractionBox["R", "Y"]}], "]"}]}], ",", "x1"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x1", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "x1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x1", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}]}], ",", "x1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x1", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Y", "R"], "*", 
+            FractionBox["R", "Z"]}], "]"}], ",", "x1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y1", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Y", "R"], "*", 
+             FractionBox["R", "Z"]}], "]"}]}], ",", "x1"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "x1"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x1", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "x1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x1", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}]}], ",", "x1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x1", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "Y"]}], "]"}], ",", "x1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y1", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "Y"]}], "]"}]}], ",", "x1"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "x1"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x1", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "x1"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x1", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}]}], ",", "x1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x1", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["Y", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "X"]}], "]"}], ",", "x1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y1", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "X"]}], "]"}]}], ",", "x1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "x1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "x1"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"The", " ", "recursion", " ", 
+     RowBox[{"ends", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["1", "R"], ",", "x1"}], "]"}], "=", 
+     RowBox[{"ArcTanh", "[", 
+      FractionBox["X", "R"], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{"R", ",", "x1"}], "]"}], "=", 
+     RowBox[{
+      FractionBox[
+       RowBox[{"X", "*", "R"}], "2"], "+", 
+      RowBox[{
+       FractionBox["\[CapitalXi]", "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}], ",", "x1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}], "-", "R"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}], ",", "x1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], "+", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["X", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}], ",", "x1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "+", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}], "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Z", "R"], "*", 
+         FractionBox["X", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}], ",", "x1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], 
+         FractionBox["Y", "R"], 
+         FractionBox["R", "Z"]}], "]"}]}], "+", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}], ",", "x1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}]}], "+", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}], ",", "x1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}]}], "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "One", " ", "level", " ", "above", " ", "the", " ", "ends", " ", "of", 
+     " ", "the", " ", "recursion"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["x1", "R"], ",", "x1"}], "]"}], "=", " ", 
+     RowBox[{"R", " ", "+", 
+      RowBox[{"y1", " ", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x1", "*", "R"}], ",", "x1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{
+           SuperscriptBox["X", "2"], "+", "\[CapitalXi]"}], "3"], "+", 
+         FractionBox[
+          RowBox[{"y1", "*", "X"}], "2"]}], ")"}], "R"}], "+", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"y1", "*", "\[CapitalXi]"}], "2"], 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox["1", "R"], ",", "x1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x1", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "x1"}], "]"}], "=", " ", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["x1", "2"], "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}], " ", "-", 
+      RowBox[{
+       FractionBox["1", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox[
+          SuperscriptBox["x1", "2"], "R"], ",", "x1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x1", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "x1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "+", "y1"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "x1"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "x1"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["X", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}], ",", "x1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x1", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "x1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "+", "y1"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "x1"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "x1"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Z", "R"], "*", 
+           FractionBox["X", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}], ",", "x1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x1", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "x1"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "+", "y1"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}], ",", "x1"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "x1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x1", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "x1"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "+", "y1"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}], ",", "x1"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "x1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x1", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "x1"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "+", "y1"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}], ",", "x1"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "x1"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "x1"}], "]"}]}]}]}], 
+    ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.7247553667604437`*^9, {3.724755500985043*^9, 3.7247555046794643`*^9}, {
+   3.7247555524976187`*^9, 3.724755561670349*^9}, {3.724755916124065*^9, 
+   3.7247559678577423`*^9}, {3.724756041240937*^9, 3.7247560626858873`*^9}, {
+   3.724756099944661*^9, 3.7247561392215643`*^9}, {3.724756190764368*^9, 
+   3.724756306578032*^9}, {3.724756338257792*^9, 3.724756344634679*^9}, {
+   3.7247564388503227`*^9, 3.724756461624043*^9}, {3.724756519118761*^9, 
+   3.724756579191224*^9}, {3.72475667364016*^9, 3.724756700702004*^9}, {
+   3.724756899467743*^9, 3.724756910667512*^9}, {3.724756966986434*^9, 
+   3.724757034631032*^9}, {3.724757111783888*^9, 3.724757147784717*^9}, {
+   3.724757215399027*^9, 3.724757271859899*^9}, {3.7247573150448513`*^9, 
+   3.7247573488978367`*^9}, {3.72475739247439*^9, 3.724757576851337*^9}, {
+   3.7247578007402353`*^9, 3.724757807841218*^9}, {3.7247578468996153`*^9, 
+   3.724757863265028*^9}, {3.724757924360376*^9, 3.724757965762856*^9}, {
+   3.724758057695744*^9, 3.724758113142082*^9}, {3.72475819452794*^9, 
+   3.7247583056267653`*^9}, 3.724758547821342*^9, {3.72475868001441*^9, 
+   3.724758734293613*^9}, {3.724758785997305*^9, 3.72475880149946*^9}, {
+   3.724758881196707*^9, 3.724758892641158*^9}, {3.7247589764328203`*^9, 
+   3.724759082014546*^9}, {3.7247593530760727`*^9, 3.724759468560404*^9}, {
+   3.724759658982748*^9, 3.7247598124821672`*^9}, 3.72475988838582*^9, {
+   3.725011288871859*^9, 3.725011398227335*^9}, {3.7250116084889383`*^9, 
+   3.725011625265276*^9}, {3.725011665621251*^9, 3.7250117910084963`*^9}, {
+   3.7250119276955643`*^9, 3.725011948845941*^9}, {3.725012043733543*^9, 
+   3.725012101363811*^9}, {3.7250123608175907`*^9, 3.725012422477848*^9}, {
+   3.72501541228568*^9, 3.725015421088373*^9}, {3.7250181446016407`*^9, 
+   3.725018203383622*^9}, 3.725189465080181*^9},
+ CellLabel->
+  "In[340]:=",ExpressionUUID->"72596d81-e8a6-40d4-bd19-8b2bb93ad8b1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Rules", " ", "for", " ", "the", " ", "y1", " ", "integration"}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"First", " ", "the", " ", "actual", " ", "recursions"}], " ", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["y1", "n_Integer"], "R"], ",", "y1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y1", "n"], "R"], ",", "y1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["y1", 
+          RowBox[{"n", "-", "1"}]], "R"}], 
+        RowBox[{"n", " "}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "n"}], "-", "1"}], ")"}], "x1"}], "n"], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "R"], ",", "y1"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x1", "2"], "+", "\[CapitalXi]"}], ")"}]}], "n"], 
+        "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "2"}]], "R"], ",", "y1"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y1", "n_Integer"], "*", "R"}], ",", "y1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y1", "n"], "*", "R"}], ",", "y1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["y1", 
+          RowBox[{"n", "-", "1"}]], "*", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["X", "2"], "+", "\[CapitalXi]"}], ")"}], "*", "R"}], 
+        RowBox[{"n", "+", "2"}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "*", "n"}], "+", "1"}], ")"}], "x1"}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", "R"}], ",", "y1"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x1", "2"], "+", "\[CapitalXi]"}], ")"}]}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "2"}]], "R"}], ",", "y1"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y1", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "y1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y1", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}]}], ",", "y1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y1", 
+          RowBox[{"n", "+", "1"}]], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], " ", "+", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["y1", 
+            RowBox[{"n", "+", "1"}]], "R"], ",", "y1"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y1", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "y1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y1", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}]}], ",", "y1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y1", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["Y", "R"], "]"}], ",", "y1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x1", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "y1"}], "]"}]}], "+", "  ", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "y1"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["X", "R"], "*", 
+             FractionBox["R", "Z"]}], "]"}]}], ",", "y1"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y1", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "y1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y1", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}]}], ",", "y1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", " ", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y1", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["Z", "R"], "]"}], ",", "y1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x1", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "y1"}], "]"}]}], "+", "  ", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "y1"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Z", "R"], "*", 
+             FractionBox["X", "R"], "*", 
+             FractionBox["R", "Y"]}], "]"}]}], ",", "y1"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y1", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "y1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y1", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}]}], ",", "y1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y1", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Y", "R"], "*", 
+            FractionBox["R", "Z"]}], "]"}], ",", "y1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x1", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Y", "R"], "*", 
+             FractionBox["R", "Z"]}], "]"}]}], ",", "y1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "y1"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y1", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "y1"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y1", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}]}], ",", "y1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y1", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "Y"]}], "]"}], ",", "y1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x1", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "Y"]}], "]"}]}], ",", "y1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "y1"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y1", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "y1"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y1", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}]}], ",", "y1"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y1", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["Y", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "X"]}], "]"}], ",", "y1"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x1", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "X"]}], "]"}]}], ",", "y1"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "y1"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y1", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "y1"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"The", " ", "recursion", " ", 
+     RowBox[{"ends", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["1", "R"], ",", "y1"}], "]"}], "=", 
+     RowBox[{"-", 
+      RowBox[{"ArcTanh", "[", 
+       FractionBox["X", "R"], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{"R", ",", "y1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox[
+        RowBox[{"X", "*", "R"}], "2"]}], "-", 
+      RowBox[{
+       FractionBox["\[CapitalXi]", "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}], ",", "y1"}], "]"}], "=", 
+     RowBox[{"R", "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}], ",", "y1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["X", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}]}], "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}], ",", "y1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Z", "R"], "*", 
+         FractionBox["X", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}]}], "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}], ",", "y1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "X"}], "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], 
+         FractionBox["Y", "R"], 
+         FractionBox["R", "Z"]}], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}], ",", "y1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "X"}], "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}]}], "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}], ",", "y1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "X"}], "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}]}], "+", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "+", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "One", " ", "level", " ", "above", " ", "the", " ", "ends", " ", "of", 
+     " ", "the", " ", "recursion"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["y1", "R"], ",", "y1"}], "]"}], "=", " ", 
+     RowBox[{"R", " ", "-", 
+      RowBox[{"x1", " ", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y1", "*", "R"}], ",", "y1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{
+           SuperscriptBox["X", "2"], "+", "\[CapitalXi]"}], "3"], "-", 
+         FractionBox[
+          RowBox[{"x1", "*", "X"}], "2"]}], ")"}], "R"}], "+", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "*", "\[CapitalXi]"}], "2"], 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox["1", "R"], ",", "y1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y1", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "y1"}], "]"}], "=", " ", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["y1", "2"], "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}], " ", "+", 
+      RowBox[{
+       FractionBox["1", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox[
+          SuperscriptBox["y1", "2"], "R"], ",", "y1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y1", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "y1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "+", "y1"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "y1"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "y1"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["X", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}], ",", "y1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y1", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "y1"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "+", "y1"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "y1"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "y1"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Z", "R"], "*", 
+           FractionBox["X", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}], ",", "y1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y1", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "y1"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "+", "y1"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}], ",", "y1"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "y1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y1", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "y1"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "+", "y1"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}], ",", "y1"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "y1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y1", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "y1"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x1", "+", "y1"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}], ",", "y1"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "y1"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "y1"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.7247553667604437`*^9, {3.724755500985043*^9, 3.7247555046794643`*^9}, {
+   3.7247555524976187`*^9, 3.724755561670349*^9}, {3.724755916124065*^9, 
+   3.7247559678577423`*^9}, {3.724756041240937*^9, 3.7247560626858873`*^9}, {
+   3.724756099944661*^9, 3.7247561392215643`*^9}, {3.724756190764368*^9, 
+   3.724756306578032*^9}, {3.724756338257792*^9, 3.724756344634679*^9}, {
+   3.7247564388503227`*^9, 3.724756461624043*^9}, {3.724756519118761*^9, 
+   3.724756579191224*^9}, {3.72475667364016*^9, 3.724756700702004*^9}, {
+   3.724756899467743*^9, 3.724756910667512*^9}, {3.724756966986434*^9, 
+   3.724757034631032*^9}, {3.724757111783888*^9, 3.724757147784717*^9}, {
+   3.724757215399027*^9, 3.724757271859899*^9}, {3.7247573150448513`*^9, 
+   3.7247573488978367`*^9}, {3.72475739247439*^9, 3.724757576851337*^9}, {
+   3.7247578007402353`*^9, 3.724757807841218*^9}, {3.7247578468996153`*^9, 
+   3.724757863265028*^9}, {3.724757924360376*^9, 3.724757965762856*^9}, {
+   3.724758057695744*^9, 3.724758113142082*^9}, {3.72475819452794*^9, 
+   3.7247583056267653`*^9}, 3.724758547821342*^9, {3.72475868001441*^9, 
+   3.724758734293613*^9}, {3.724758785997305*^9, 3.72475880149946*^9}, {
+   3.724758881196707*^9, 3.724758892641158*^9}, {3.7247589764328203`*^9, 
+   3.724759082014546*^9}, {3.7247593530760727`*^9, 3.724759468560404*^9}, {
+   3.724759658982748*^9, 3.7247598124821672`*^9}, 3.72475988838582*^9, {
+   3.72476030977015*^9, 3.724760428567576*^9}, {3.724760621742787*^9, 
+   3.724760805099948*^9}, {3.724760835700976*^9, 3.72476091327314*^9}, {
+   3.724760943331765*^9, 3.7247609958157253`*^9}, {3.7247610420742397`*^9, 
+   3.724761400985408*^9}, {3.72501217769106*^9, 3.7250123443193808`*^9}, {
+   3.725012456307218*^9, 3.725012602906886*^9}, {3.725012765106617*^9, 
+   3.72501277540819*^9}, {3.725012937934701*^9, 3.72501295543047*^9}, {
+   3.725013233994719*^9, 3.7250133309617853`*^9}},
+ CellLabel->
+  "In[364]:=",ExpressionUUID->"e2ebb163-93b8-4cc1-9568-f0715dc50232"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Rules", " ", "for", " ", "the", " ", "x2", " ", "integration"}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"First", " ", "the", " ", "actual", " ", "recursions"}], " ", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["x2", "n_Integer"], "R"], ",", "x2"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x2", "n"], "R"], ",", "x2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["x2", 
+          RowBox[{"n", "-", "1"}]], "R"}], 
+        RowBox[{"n", " "}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "n"}], "-", "1"}], ")"}], "y2"}], "n"], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "R"], ",", "x2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["y2", "2"], "+", "\[CapitalUpsilon]"}], ")"}]}], 
+         "n"], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "2"}]], "R"], ",", "x2"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x2", "n_Integer"], "*", "R"}], ",", "x2"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x2", "n"], "*", "R"}], ",", "x2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["x2", 
+          RowBox[{"n", "-", "1"}]], "*", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["Y", "2"], "+", "\[CapitalUpsilon]"}], ")"}], "*", 
+         "R"}], 
+        RowBox[{"n", "+", "2"}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "*", "n"}], "+", "1"}], ")"}], "y2"}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", "R"}], ",", "x2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["y2", "2"], "+", "\[CapitalUpsilon]"}], ")"}]}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "2"}]], "R"}], ",", "x2"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x2", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "x2"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x2", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}]}], ",", "x2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x2", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["X", "R"], "]"}], ",", "x2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y2", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "x2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "x2"}], "]"}]}], " ", "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Y", "R"], "*", 
+             FractionBox["R", "Z"]}], "]"}]}], ",", "x2"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x2", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "x2"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x2", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}]}], ",", "x2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x2", 
+          RowBox[{"n", "+", "1"}]], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], " ", "-", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["x2", 
+            RowBox[{"n", "+", "1"}]], "R"], ",", "x2"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x2", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "x2"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x2", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}]}], ",", "x2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", " ", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x2", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["Z", "R"], "]"}], ",", "x2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y2", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "x2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "x2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "X"]}], "]"}]}], ",", "x2"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x2", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "x2"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x2", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}]}], ",", "x2"}], "]"}], " ", "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x2", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Y", "R"], "*", 
+            FractionBox["R", "Z"]}], "]"}], ",", "x2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y2", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Y", "R"], "*", 
+             FractionBox["R", "Z"]}], "]"}]}], ",", "x2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "x2"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x2", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "x2"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x2", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}]}], ",", "x2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x2", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "Y"]}], "]"}], ",", "x2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y2", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "Y"]}], "]"}]}], ",", "x2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "x2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "x2"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x2", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "x2"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x2", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}]}], ",", "x2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x2", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["Y", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "X"]}], "]"}], ",", "x2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y2", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "X"]}], "]"}]}], ",", "x2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "x2"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"The", " ", "recursion", " ", 
+     RowBox[{"ends", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["1", "R"], ",", "x2"}], "]"}], "=", 
+     RowBox[{"ArcTanh", "[", 
+      FractionBox["Y", "R"], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{"R", ",", "x2"}], "]"}], "=", 
+     RowBox[{
+      FractionBox[
+       RowBox[{"Y", "*", "R"}], "2"], "+", 
+      RowBox[{
+       FractionBox["\[CapitalUpsilon]", "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}], ",", "x2"}], "]"}], "=", " ", 
+     RowBox[{
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}], "+", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}], ",", "x2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], "-", "R"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}], ",", "x2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "+", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Z", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}], ",", "x2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], 
+         FractionBox["Y", "R"], 
+         FractionBox["R", "Z"]}], "]"}]}], "+", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}], ",", "x2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], 
+         FractionBox["Z", "R"], 
+         FractionBox["R", "Y"]}], "]"}]}], "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}], ",", "x2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], 
+         FractionBox["Z", "R"], 
+         FractionBox["R", "X"]}], "]"}]}], "+", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "One", " ", "level", " ", "above", " ", "the", " ", "ends", " ", "of", 
+     " ", "the", " ", "recursion"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["x2", "R"], ",", "x2"}], "]"}], "=", " ", 
+     RowBox[{"R", " ", "+", 
+      RowBox[{"y2", " ", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x2", "*", "R"}], ",", "x2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{
+           SuperscriptBox["Y", "2"], "+", "\[CapitalUpsilon]"}], "3"], "+", 
+         FractionBox[
+          RowBox[{"y2", "*", "Y"}], "2"]}], ")"}], "R"}], "+", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"y2", "*", "\[CapitalUpsilon]"}], "2"], 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox["1", "R"], ",", "x2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x2", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "x2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "+", "y2"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "x2"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "x2"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}], ",", "x2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x2", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "x2"}], "]"}], "=", " ", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["x2", "2"], "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], " ", "-", 
+      RowBox[{
+       FractionBox["1", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox[
+          SuperscriptBox["x2", "2"], "R"], ",", "x2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x2", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "x2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "+", "y2"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "x2"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "x2"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}], ",", "x2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x2", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "x2"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "+", "y2"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}], ",", "x2"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "x2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x2", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "x2"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "+", "y2"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}], ",", "x2"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "x2"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "x2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x2", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "x2"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "+", "y2"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}], ",", "x2"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "x2"}], "]"}]}]}]}], 
+    ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.7247553667604437`*^9, {3.724755500985043*^9, 3.7247555046794643`*^9}, {
+   3.7247555524976187`*^9, 3.724755561670349*^9}, {3.724755916124065*^9, 
+   3.7247559678577423`*^9}, {3.724756041240937*^9, 3.7247560626858873`*^9}, {
+   3.724756099944661*^9, 3.7247561392215643`*^9}, {3.724756190764368*^9, 
+   3.724756306578032*^9}, {3.724756338257792*^9, 3.724756344634679*^9}, {
+   3.7247564388503227`*^9, 3.724756461624043*^9}, {3.724756519118761*^9, 
+   3.724756579191224*^9}, {3.72475667364016*^9, 3.724756700702004*^9}, {
+   3.724756899467743*^9, 3.724756910667512*^9}, {3.724756966986434*^9, 
+   3.724757034631032*^9}, {3.724757111783888*^9, 3.724757147784717*^9}, {
+   3.724757215399027*^9, 3.724757271859899*^9}, {3.7247573150448513`*^9, 
+   3.7247573488978367`*^9}, {3.72475739247439*^9, 3.724757576851337*^9}, {
+   3.7247578007402353`*^9, 3.724757807841218*^9}, {3.7247578468996153`*^9, 
+   3.724757863265028*^9}, {3.724757924360376*^9, 3.724757965762856*^9}, {
+   3.724758057695744*^9, 3.724758113142082*^9}, {3.72475819452794*^9, 
+   3.7247583056267653`*^9}, 3.724758547821342*^9, {3.72475868001441*^9, 
+   3.724758734293613*^9}, {3.724758785997305*^9, 3.72475880149946*^9}, {
+   3.724758881196707*^9, 3.724758892641158*^9}, {3.7247589764328203`*^9, 
+   3.724759082014546*^9}, {3.7247593530760727`*^9, 3.724759468560404*^9}, {
+   3.724759658982748*^9, 3.7247598124821672`*^9}, 3.72475988838582*^9, {
+   3.7247615024482737`*^9, 3.724761502661977*^9}, {3.7247615558242683`*^9, 
+   3.724761652040169*^9}, {3.724761684597563*^9, 3.724761685797106*^9}, {
+   3.724761748615027*^9, 3.72476199169945*^9}, 3.724762030571493*^9, 
+   3.724762069970549*^9, 3.7247621051464252`*^9, {3.7247621890730762`*^9, 
+   3.724762218018455*^9}, {3.7247622643477383`*^9, 3.724762305435491*^9}, {
+   3.724762349319734*^9, 3.724762488330099*^9}, {3.724762539727209*^9, 
+   3.724762570271975*^9}, 3.724762658693817*^9, {3.72476287444427*^9, 
+   3.7247628789124613`*^9}, {3.7247630565883293`*^9, 
+   3.7247630767603073`*^9}, {3.7247631188382397`*^9, 3.724763510678286*^9}, {
+   3.724763600051156*^9, 3.724763605956604*^9}, {3.7247636384109364`*^9, 
+   3.724763724382597*^9}, 3.72476379298567*^9, {3.724763873600122*^9, 
+   3.724763902860217*^9}, {3.725013404109674*^9, 3.725013610235338*^9}},
+ CellLabel->
+  "In[388]:=",ExpressionUUID->"14ef584f-cb47-470f-93d3-6e7e2b209036"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Rules", " ", "for", " ", "the", " ", "y2", " ", "integration"}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"First", " ", "the", " ", "actual", " ", "recursions"}], " ", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["y2", "n_Integer"], "R"], ",", "y2"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y2", "n"], "R"], ",", "y2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["y2", 
+          RowBox[{"n", "-", "1"}]], "R"}], 
+        RowBox[{"n", " "}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "n"}], "-", "1"}], ")"}], "x2"}], "n"], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "R"], ",", "y2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x2", "2"], "+", "\[CapitalUpsilon]"}], ")"}]}], 
+         "n"], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "2"}]], "R"], ",", "y2"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y2", "n_Integer"], "*", "R"}], ",", "y2"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y2", "n"], "*", "R"}], ",", "y2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["y2", 
+          RowBox[{"n", "-", "1"}]], "*", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["Y", "2"], "+", "\[CapitalUpsilon]"}], ")"}], "*", 
+         "R"}], 
+        RowBox[{"n", "+", "2"}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "*", "n"}], "+", "1"}], ")"}], "x2"}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", "R"}], ",", "y2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x2", "2"], "+", "\[CapitalUpsilon]"}], ")"}]}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "2"}]], "R"}], ",", "y2"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y2", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "y2"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y2", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}]}], ",", "y2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y2", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["X", "R"], "]"}], ",", "y2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x2", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "y2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "y2"}], "]"}]}], " ", "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Y", "R"], "*", 
+             FractionBox["R", "Z"]}], "]"}]}], ",", "y2"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y2", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "y2"}], "]"}], ":=", " ", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y2", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}]}], ",", "y2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y2", 
+          RowBox[{"n", "+", "1"}]], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], " ", "+", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["y2", 
+            RowBox[{"n", "+", "1"}]], "R"], ",", "y2"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y2", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "y2"}], "]"}], ":=", " ", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y2", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}]}], ",", "y2"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y2", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["Z", "R"], "]"}], ",", "y2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x2", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "y2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "y2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "X"]}], "]"}]}], ",", "y2"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y2", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "y2"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y2", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}]}], ",", "y2"}], "]"}], " ", "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y2", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Y", "R"], "*", 
+            FractionBox["R", "Z"]}], "]"}], ",", "y2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x2", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Y", "R"], "*", 
+             FractionBox["R", "Z"]}], "]"}]}], ",", "y2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "y2"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y2", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "y2"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y2", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}]}], ",", "y2"}], "]"}], " ", "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y2", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "Y"]}], "]"}], ",", "y2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x2", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "Y"]}], "]"}]}], ",", "y2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "y2"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Z", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "y2"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y2", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "y2"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y2", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}]}], ",", "y2"}], "]"}], " ", "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y2", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["Y", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "X"]}], "]"}], ",", "y2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x2", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "X"]}], "]"}]}], ",", "y2"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y2", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "y2"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"The", " ", "recursion", " ", 
+     RowBox[{"ends", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["1", "R"], ",", "y2"}], "]"}], "=", 
+     RowBox[{"-", 
+      RowBox[{"ArcTanh", "[", 
+       FractionBox["Y", "R"], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{"R", ",", "y2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox[
+        RowBox[{"Y", "*", "R"}], "2"]}], "-", 
+      RowBox[{
+       FractionBox["\[CapitalUpsilon]", "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}], ",", "y2"}], "]"}], "=", " ", 
+     RowBox[{
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}]}], "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}], "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}], ",", "y2"}], "]"}], "=", 
+     RowBox[{"R", "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}], ",", "y2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Z", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}]}], "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}], ",", "y2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "Y"}], "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], 
+         FractionBox["Y", "R"], 
+         FractionBox["R", "Z"]}], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}], ",", "y2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "Y"}], "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], 
+         FractionBox["Z", "R"], 
+         FractionBox["R", "Y"]}], "]"}]}], "+", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "+", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}], ",", "y2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "Y"}], "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], 
+         FractionBox["Z", "R"], 
+         FractionBox["R", "X"]}], "]"}]}], "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "One", " ", "level", " ", "above", " ", "the", " ", "ends", " ", "of", 
+     " ", "the", " ", "recursion"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["y2", "R"], ",", "y2"}], "]"}], "=", "  ", 
+     RowBox[{"R", "-", 
+      RowBox[{"x2", " ", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y2", "*", "R"}], ",", "y2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{
+           SuperscriptBox["Y", "2"], "+", "\[CapitalUpsilon]"}], "3"], "-", 
+         FractionBox[
+          RowBox[{"x2", "*", "Y"}], "2"]}], ")"}], "R"}], "+", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "*", "\[CapitalUpsilon]"}], "2"], 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox["1", "R"], ",", "y2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y2", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "y2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "+", "y2"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "y2"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "y2"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}], ",", "y2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y2", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "y2"}], "]"}], "=", " ", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["y2", "2"], "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], " ", "+", 
+      RowBox[{
+       FractionBox["1", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox[
+          SuperscriptBox["y2", "2"], "R"], ",", "y2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y2", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "y2"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "+", "y2"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "y2"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "y2"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}], ",", "y2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y2", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "y2"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "+", "y2"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}], ",", "y2"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "y2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y2", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "y2"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "+", "y2"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}], ",", "y2"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "y2"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Z", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "y2"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y2", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "y2"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x2", "+", "y2"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}], ",", "y2"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "y2"}], "]"}]}]}]}], 
+    ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.7247553667604437`*^9, {3.724755500985043*^9, 3.7247555046794643`*^9}, {
+   3.7247555524976187`*^9, 3.724755561670349*^9}, {3.724755916124065*^9, 
+   3.7247559678577423`*^9}, {3.724756041240937*^9, 3.7247560626858873`*^9}, {
+   3.724756099944661*^9, 3.7247561392215643`*^9}, {3.724756190764368*^9, 
+   3.724756306578032*^9}, {3.724756338257792*^9, 3.724756344634679*^9}, {
+   3.7247564388503227`*^9, 3.724756461624043*^9}, {3.724756519118761*^9, 
+   3.724756579191224*^9}, {3.72475667364016*^9, 3.724756700702004*^9}, {
+   3.724756899467743*^9, 3.724756910667512*^9}, {3.724756966986434*^9, 
+   3.724757034631032*^9}, {3.724757111783888*^9, 3.724757147784717*^9}, {
+   3.724757215399027*^9, 3.724757271859899*^9}, {3.7247573150448513`*^9, 
+   3.7247573488978367`*^9}, {3.72475739247439*^9, 3.724757576851337*^9}, {
+   3.7247578007402353`*^9, 3.724757807841218*^9}, {3.7247578468996153`*^9, 
+   3.724757863265028*^9}, {3.724757924360376*^9, 3.724757965762856*^9}, {
+   3.724758057695744*^9, 3.724758113142082*^9}, {3.72475819452794*^9, 
+   3.7247583056267653`*^9}, 3.724758547821342*^9, {3.72475868001441*^9, 
+   3.724758734293613*^9}, {3.724758785997305*^9, 3.72475880149946*^9}, {
+   3.724758881196707*^9, 3.724758892641158*^9}, {3.7247589764328203`*^9, 
+   3.724759082014546*^9}, {3.7247593530760727`*^9, 3.724759468560404*^9}, {
+   3.724759658982748*^9, 3.7247598124821672`*^9}, 3.72475988838582*^9, {
+   3.7247615024482737`*^9, 3.724761502661977*^9}, {3.7247615558242683`*^9, 
+   3.724761652040169*^9}, {3.724761684597563*^9, 3.724761685797106*^9}, {
+   3.724761748615027*^9, 3.72476199169945*^9}, 3.724762030571493*^9, 
+   3.724762069970549*^9, 3.7247621051464252`*^9, {3.7247621890730762`*^9, 
+   3.724762218018455*^9}, {3.7247622643477383`*^9, 3.724762305435491*^9}, {
+   3.724762349319734*^9, 3.724762488330099*^9}, {3.724762539727209*^9, 
+   3.724762570271975*^9}, 3.724762658693817*^9, {3.72476287444427*^9, 
+   3.7247628789124613`*^9}, {3.7247630565883293`*^9, 
+   3.7247630767603073`*^9}, {3.7247631188382397`*^9, 3.724763510678286*^9}, {
+   3.724763600051156*^9, 3.724763605956604*^9}, {3.7247636384109364`*^9, 
+   3.724763724382597*^9}, 3.72476379298567*^9, {3.724763873600122*^9, 
+   3.724763902860217*^9}, {3.724764029339533*^9, 3.724764310479459*^9}, 
+   3.724764346515258*^9, {3.72476439965827*^9, 3.724764526394127*^9}, {
+   3.724764675221512*^9, 3.7247646764898*^9}, {3.7250136893611927`*^9, 
+   3.7250138749196043`*^9}},
+ CellLabel->
+  "In[412]:=",ExpressionUUID->"e0093485-311a-4bab-b166-37eae5e74d30"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Rules", " ", "for", " ", "the", " ", "x3", " ", "integration"}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"First", " ", "the", " ", "actual", " ", "recursions"}], " ", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["x3", "n_Integer"], "R"], ",", "x3"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x3", "n"], "R"], ",", "x3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["x3", 
+          RowBox[{"n", "-", "1"}]], "R"}], 
+        RowBox[{"n", " "}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "n"}], "-", "1"}], ")"}], "y3"}], "n"], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "R"], ",", "x3"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["y3", "2"], "+", "\[CapitalTheta]"}], ")"}]}], 
+         "n"], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "2"}]], "R"], ",", "x3"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x3", "n_Integer"], "*", "R"}], ",", "x3"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x3", "n"], "*", "R"}], ",", "x3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["x3", 
+          RowBox[{"n", "-", "1"}]], "*", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["Z", "2"], "+", "\[CapitalTheta]"}], ")"}], "*", 
+         "R"}], 
+        RowBox[{"n", "+", "2"}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "*", "n"}], "+", "1"}], ")"}], "y3"}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", "R"}], ",", "x3"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["y3", "2"], "+", "\[CapitalTheta]"}], ")"}]}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "2"}]], "R"}], ",", "x3"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x3", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "x3"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x3", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}]}], ",", "x3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x3", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["X", "R"], "]"}], ",", "x3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y3", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "x3"}], "]"}]}], " ", "-", 
+       " ", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "x3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "Y"]}], "]"}]}], ",", "x3"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x3", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "x3"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x3", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}]}], ",", "x3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x3", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["Y", "R"], "]"}], ",", "x3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y3", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "x3"}], "]"}]}], "-", "  ", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "x3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "X"]}], "]"}]}], ",", "x3"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x3", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "x3"}], "]"}], ":=", " ", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x3", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}]}], ",", "x3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x3", 
+          RowBox[{"n", "+", "1"}]], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], " ", "-", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["x3", 
+            RowBox[{"n", "+", "1"}]], "R"], ",", "x3"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x3", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "x3"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x3", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}]}], ",", "x3"}], "]"}], " ", "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x3", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Y", "R"], "*", 
+            FractionBox["R", "Z"]}], "]"}], ",", "x3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y3", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Y", "R"], "*", 
+             FractionBox["R", "Z"]}], "]"}]}], ",", "x3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "x3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "x3"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x3", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "x3"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x3", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}]}], ",", "x3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x3", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "Y"]}], "]"}], ",", "x3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y3", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "Y"]}], "]"}]}], ",", "x3"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "x3"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x3", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "x3"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["x3", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}]}], ",", "x3"}], "]"}], " ", "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["x3", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["Y", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "X"]}], "]"}], ",", "x3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "y3", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "X"]}], "]"}]}], ",", "x3"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["x3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "x3"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"The", " ", "recursion", " ", 
+     RowBox[{"ends", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["1", "R"], ",", "x3"}], "]"}], "=", 
+     RowBox[{"ArcTanh", "[", 
+      FractionBox["Z", "R"], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{"R", ",", "x3"}], "]"}], "=", 
+     RowBox[{
+      FractionBox[
+       RowBox[{"Z", "*", "R"}], "2"], "+", 
+      RowBox[{
+       FractionBox["\[CapitalTheta]", "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}], ",", "x3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}], "+", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}], ",", "x3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], "+", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}], ",", "x3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "-", "R"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}], ",", "x3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}]}], "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}], ",", "x3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}]}], "+", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}], ",", "x3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}]}], "+", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "One", " ", "level", " ", "above", " ", "the", " ", "ends", " ", "of", 
+     " ", "the", " ", "recursion"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["x3", "R"], ",", "x3"}], "]"}], "=", " ", 
+     RowBox[{"R", " ", "+", 
+      RowBox[{"y3", " ", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x3", "*", "R"}], ",", "x3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{
+           SuperscriptBox["Z", "2"], "+", "\[CapitalTheta]"}], "3"], "+", 
+         FractionBox[
+          RowBox[{"y3", "*", "Z"}], "2"]}], ")"}], "R"}], "+", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"y3", "*", "\[CapitalTheta]"}], "2"], 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox["1", "R"], ",", "x3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x3", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "x3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "+", "y3"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "x3"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "x3"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}], ",", "x3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x3", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "x3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "+", "y3"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "x3"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "x3"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}], ",", "x3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x3", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "x3"}], "]"}], "=", " ", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["x3", "2"], "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], " ", "-", 
+      RowBox[{
+       FractionBox["1", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox[
+          SuperscriptBox["x3", "2"], "R"], ",", "x3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x3", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "x3"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "+", "y3"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}], ",", "x3"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "x3"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "x3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x3", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "x3"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "+", "y3"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}], ",", "x3"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "x3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"x3", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "x3"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "+", "y3"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}], ",", "x3"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "x3"}], "]"}]}]}]}], 
+    ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.724075677491976*^9, 3.72407572959468*^9}, {
+   3.7240762365297117`*^9, 3.724076285775628*^9}, 3.724076657044945*^9, {
+   3.7240767057066708`*^9, 3.724076712266604*^9}, {3.724076855135694*^9, 
+   3.7240768624393597`*^9}, {3.7240773577143707`*^9, 3.72407736740042*^9}, {
+   3.724077517968358*^9, 3.724077533272098*^9}, {3.724077578136539*^9, 
+   3.724077600253726*^9}, {3.724077679814492*^9, 3.7240776928376904`*^9}, 
+   3.724078459781267*^9, 3.724079209019683*^9, {3.724080154750545*^9, 
+   3.724080181548332*^9}, {3.724136613917178*^9, 3.724136621607635*^9}, {
+   3.724136656601173*^9, 3.724136679799185*^9}, {3.724136797814034*^9, 
+   3.724136835068675*^9}, {3.7241369147008677`*^9, 3.72413695526677*^9}, {
+   3.7241402155957317`*^9, 3.724140216538128*^9}, {3.724147366978303*^9, 
+   3.7241475291582413`*^9}, {3.724147781401433*^9, 3.72414785988109*^9}, {
+   3.7241479330575943`*^9, 3.724148070439872*^9}, {3.724148180389842*^9, 
+   3.724148222077427*^9}, {3.7241482680703583`*^9, 3.724148272234582*^9}, {
+   3.724148379796294*^9, 3.7241485352709723`*^9}, {3.724148924803617*^9, 
+   3.7241489550983477`*^9}, {3.724148991556061*^9, 3.724149409514173*^9}, {
+   3.724149442225555*^9, 3.7241496154969893`*^9}, {3.724149648296701*^9, 
+   3.724149679503612*^9}, {3.7241497309519033`*^9, 3.724149805301405*^9}, {
+   3.724150920118022*^9, 3.724150942939267*^9}, {3.7241512376426992`*^9, 
+   3.7241512387755613`*^9}, 3.724151323512108*^9, {3.724151599012066*^9, 
+   3.724151607363225*^9}, 3.724151783616555*^9, 3.72415206637292*^9, {
+   3.724152176178377*^9, 3.7241521813367243`*^9}, {3.7241526388984623`*^9, 
+   3.724152641890851*^9}, {3.724152831202895*^9, 3.724152839342443*^9}, {
+   3.7247648751331367`*^9, 3.72476489312451*^9}, {3.725013977445189*^9, 
+   3.725014137195594*^9}, {3.725019028253214*^9, 3.7250190330501738`*^9}, {
+   3.7250190735146*^9, 3.725019076706469*^9}},
+ CellLabel->
+  "In[436]:=",ExpressionUUID->"5799481f-5b88-451f-b39f-6360f9909dda"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Rules", " ", "for", " ", "the", " ", "y3", " ", "integration"}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"First", " ", "the", " ", "actual", " ", "recursions"}], " ", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["y3", "n_Integer"], "R"], ",", "y3"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y3", "n"], "R"], ",", "y3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["y3", 
+          RowBox[{"n", "-", "1"}]], "R"}], 
+        RowBox[{"n", " "}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "n"}], "-", "1"}], ")"}], "x3"}], "n"], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "R"], ",", "y3"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x3", "2"], "+", "\[CapitalTheta]"}], ")"}]}], 
+         "n"], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "2"}]], "R"], ",", "y3"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y3", "n_Integer"], "*", "R"}], ",", "y3"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y3", "n"], "*", "R"}], ",", "y3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["y3", 
+          RowBox[{"n", "-", "1"}]], "*", 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["Z", "2"], "+", "\[CapitalTheta]"}], ")"}], "*", 
+         "R"}], 
+        RowBox[{"n", "+", "2"}]], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "*", "n"}], "+", "1"}], ")"}], "x3"}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", "R"}], ",", "y3"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox[
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "1"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox["x3", "2"], "+", "\[CapitalTheta]"}], ")"}]}], 
+         RowBox[{"n", "+", "2"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "2"}]], "R"}], ",", "y3"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y3", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "y3"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y3", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}]}], ",", "y3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y3", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["X", "R"], "]"}], ",", "y3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x3", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "y3"}], "]"}]}], " ", "+", 
+       " ", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "y3"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "Y"]}], "]"}]}], ",", "y3"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y3", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "y3"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y3", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}]}], ",", "y3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y3", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTanh", "[", 
+           FractionBox["Y", "R"], "]"}], ",", "y3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x3", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "y3"}], "]"}]}], "+", " ", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Z", "R"], "]"}]}], ",", "y3"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "X"]}], "]"}]}], ",", "y3"}], "]"}]}]}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y3", "n_Integer"], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "y3"}], "]"}], ":=", " ", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y3", "n"], "*", 
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}]}], ",", "y3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y3", 
+          RowBox[{"n", "+", "1"}]], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], " ", "+", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["y3", 
+            RowBox[{"n", "+", "1"}]], "R"], ",", "y3"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y3", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "y3"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y3", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}]}], ",", "y3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y3", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Y", "R"], "*", 
+            FractionBox["R", "Z"]}], "]"}], ",", "y3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x3", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Y", "R"], "*", 
+             FractionBox["R", "Z"]}], "]"}]}], ",", "y3"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "y3"}], "]"}]}], "-", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "y3"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y3", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "y3"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y3", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}]}], ",", "y3"}], "]"}], "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y3", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "Y"]}], "]"}], ",", "y3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x3", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["X", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "Y"]}], "]"}]}], ",", "y3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "Y", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["X", "R"], "]"}]}], ",", "y3"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["y3", "n_Integer"], "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "y3"}], "]"}], " ", ":=", 
+     RowBox[{
+      RowBox[{"integrate", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["y3", "n"], "*", 
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}]}], ",", "y3"}], "]"}], " ", "=", 
+      "\[Continuation]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["y3", "n"], 
+         RowBox[{"n", "+", "1"}]], "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["Y", "R"], "*", 
+            FractionBox["Z", "R"], "*", 
+            FractionBox["R", "X"]}], "]"}], ",", "y3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "x3", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTan", "[", 
+            RowBox[{
+             FractionBox["Y", "R"], "*", 
+             FractionBox["Z", "R"], "*", 
+             FractionBox["R", "X"]}], "]"}]}], ",", "y3"}], "]"}]}], "+", 
+       RowBox[{
+        FractionBox["n", 
+         RowBox[{"n", "+", "1"}]], "*", "X", "*", 
+        RowBox[{"integrate", "[", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["y3", 
+            RowBox[{"n", "-", "1"}]], "*", 
+           RowBox[{"ArcTanh", "[", 
+            FractionBox["Y", "R"], "]"}]}], ",", "y3"}], "]"}]}]}]}]}], ";"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"First", " ", "the", " ", "recursion", " ", 
+     RowBox[{"ends", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["1", "R"], ",", "y3"}], "]"}], "=", 
+     RowBox[{"-", 
+      RowBox[{"ArcTanh", "[", 
+       FractionBox["Z", "R"], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{"R", ",", "y3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox[
+        RowBox[{"Z", "*", "R"}], "2"]}], "-", 
+      RowBox[{
+       FractionBox["\[CapitalTheta]", "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}], ",", "y3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}], "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}], ",", "y3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}], ",", "y3"}], "]"}], "=", 
+     RowBox[{"R", "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}], ",", "y3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], "+", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}], "-", 
+      RowBox[{"Z", "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Y", "R"], "*", 
+         FractionBox["R", "Z"]}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}], ",", "y3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "Z"}], "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "Y"]}], "]"}]}], "-", 
+      RowBox[{"Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}], ",", "y3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "Z"}], "*", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], "*", 
+         FractionBox["Z", "R"], "*", 
+         FractionBox["R", "X"]}], "]"}]}], "-", 
+      RowBox[{"X", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "One", " ", "level", " ", "above", " ", "the", " ", "ends", " ", "of", 
+     " ", "the", " ", "recursion"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       FractionBox["y3", "R"], ",", "y3"}], "]"}], "=", " ", 
+     RowBox[{"R", " ", "-", 
+      RowBox[{"x3", " ", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y3", "*", "R"}], ",", "y3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{
+           SuperscriptBox["Z", "2"], "+", "\[CapitalTheta]"}], "3"], "-", 
+         FractionBox[
+          RowBox[{"x3", "*", "Z"}], "2"]}], ")"}], "R"}], "+", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "*", "\[CapitalTheta]"}], "2"], 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox["1", "R"], ",", "y3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y3", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["X", "R"], "]"}]}], ",", "y3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "+", "y3"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "y3"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "y3"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}], ",", "y3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y3", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Y", "R"], "]"}]}], ",", "y3"}], "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "+", "y3"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "y3"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Z", "R"], "]"}], ",", "y3"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}], ",", "y3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y3", "*", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox["Z", "R"], "]"}]}], ",", "y3"}], "]"}], "=", " ", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["y3", "2"], "2"], "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], " ", "+", 
+      RowBox[{
+       FractionBox["1", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         FractionBox[
+          SuperscriptBox["y3", "2"], "R"], ",", "y3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y3", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Y", "R"], "*", 
+          FractionBox["R", "Z"]}], "]"}]}], ",", "y3"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "+", "y3"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Y", "R"], "*", 
+           FractionBox["R", "Z"]}], "]"}], ",", "y3"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "y3"}], "]"}]}], "-", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "y3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y3", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["X", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "Y"]}], "]"}]}], ",", "y3"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "+", "y3"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["X", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "Y"]}], "]"}], ",", "y3"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["Y", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["X", "R"], "]"}], ",", "y3"}], "]"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"y3", "*", 
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          FractionBox["Y", "R"], "*", 
+          FractionBox["Z", "R"], "*", 
+          FractionBox["R", "X"]}], "]"}]}], ",", "y3"}], "]"}], " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox[
+        RowBox[{"x3", "+", "y3"}], "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           FractionBox["Y", "R"], "*", 
+           FractionBox["Z", "R"], "*", 
+           FractionBox["R", "X"]}], "]"}], ",", "y3"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox["X", "2"], "*", 
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"ArcTanh", "[", 
+          FractionBox["Y", "R"], "]"}], ",", "y3"}], "]"}]}]}]}], 
+    ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.724155155396604*^9, 3.724155323200761*^9}, {
+   3.724155570623451*^9, 3.724155576997273*^9}, {3.724155673478345*^9, 
+   3.724155676316247*^9}, {3.724155719310648*^9, 3.724155877299262*^9}, {
+   3.724156054873536*^9, 3.724156066776341*^9}, {3.724156120997046*^9, 
+   3.7241561260616913`*^9}, {3.724156156647695*^9, 3.7241562025369577`*^9}, {
+   3.724156235559116*^9, 3.72415624787259*^9}, {3.7241562881571627`*^9, 
+   3.724156455474009*^9}, 3.724156552888982*^9, 3.724156717543406*^9, {
+   3.7241573044213667`*^9, 3.7241573190466843`*^9}, {3.7241573751344957`*^9, 
+   3.7241574062338448`*^9}, {3.72415746888448*^9, 3.724157472090291*^9}, {
+   3.7241575351474247`*^9, 3.724157541089121*^9}, {3.724157895470189*^9, 
+   3.724157915499282*^9}, {3.724157962006131*^9, 3.724157993418865*^9}, {
+   3.7241580508927307`*^9, 3.724158175727129*^9}, 3.724158210314177*^9, {
+   3.724158514845381*^9, 3.7241586071109543`*^9}, {3.7241586615792847`*^9, 
+   3.724158674790921*^9}, {3.724764866942458*^9, 3.724764869740252*^9}, 
+   3.7247649156292467`*^9, {3.725014210834065*^9, 3.725014379592031*^9}, {
+   3.72501901858422*^9, 3.7250190225141907`*^9}, {3.725019065347906*^9, 
+   3.7250190699707737`*^9}},
+ CellLabel->
+  "In[460]:=",ExpressionUUID->"cc7e87a5-783f-4d7c-8cc9-63f5b3198bd7"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"expr", " ", "=", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{"Collect", "[", 
+    RowBox[{
+     RowBox[{"integrate", "[", 
+      RowBox[{
+       RowBox[{"integrate", "[", 
+        RowBox[{
+         RowBox[{"integrate", "[", 
+          RowBox[{
+           FractionBox["1", "R"], ",", "y1"}], "]"}], ",", "y2"}], "]"}], ",",
+        "y3"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"R", ",", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}], ",", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}], ",", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}], ",", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], 
+         FractionBox["Y", "R"], 
+         FractionBox["R", "Z"]}], "]"}], ",", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["X", "R"], 
+         FractionBox["Z", "R"], 
+         FractionBox["R", "Y"]}], "]"}], ",", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{
+         FractionBox["Y", "R"], 
+         FractionBox["Z", "R"], 
+         FractionBox["R", "X"]}], "]"}]}], "}"}]}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.724765296054996*^9, 3.724765322550028*^9}, 
+   3.724766324422022*^9, {3.724769515103264*^9, 3.7247696198040133`*^9}, {
+   3.724769797257638*^9, 3.72476982287374*^9}, {3.7247698673302727`*^9, 
+   3.724769914766553*^9}, {3.724769972282133*^9, 3.7247700257883387`*^9}, {
+   3.724770081294362*^9, 3.72477008193928*^9}, {3.724770165947587*^9, 
+   3.724770172194035*^9}, 3.72477038808932*^9, {3.725014676130693*^9, 
+   3.725014679050447*^9}, {3.725015169203567*^9, 3.7250151693536043`*^9}, {
+   3.725015257617634*^9, 3.725015291959684*^9}, {3.725015327706141*^9, 
+   3.725015330095128*^9}, {3.725015383095882*^9, 3.725015387711244*^9}, {
+   3.72501545486202*^9, 3.7250154552057858`*^9}, {3.725015828001358*^9, 
+   3.725015845457101*^9}, {3.7250159025910797`*^9, 3.725015903750655*^9}, 
+   3.725016647574666*^9, {3.72501863846522*^9, 3.7250186441516113`*^9}, 
+   3.725018946123468*^9, {3.725019603402595*^9, 3.725019608024598*^9}, {
+   3.725019860456462*^9, 3.725019864300868*^9}, {3.725020186026724*^9, 
+   3.7250201938801203`*^9}, {3.725020493716737*^9, 3.725020503917679*^9}, {
+   3.725021241123101*^9, 3.725021245024724*^9}, {3.725021431950861*^9, 
+   3.725021436894511*^9}, {3.72502177421128*^9, 3.725021777386467*^9}, 
+   3.725022418186266*^9, {3.7250230228486633`*^9, 3.7250230238067408`*^9}, {
+   3.725024196616706*^9, 3.725024203237903*^9}, {3.7250242373688602`*^9, 
+   3.725024237846695*^9}, {3.725024433676577*^9, 3.725024463898107*^9}, {
+   3.7250245428503103`*^9, 3.725024544753456*^9}, {3.8157437062366953`*^9, 
+   3.815743714651655*^9}, {3.815743803679335*^9, 3.815743814756287*^9}, {
+   3.8157441854544897`*^9, 3.8157441858850183`*^9}, {3.815744248621922*^9, 
+   3.815744289718891*^9}},ExpressionUUID->"bcb27ea3-0c3f-4530-993e-\
+1b045a15932c"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "6"], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"2", " ", 
+     RowBox[{"(", 
+      RowBox[{"x2", "-", "y2"}], ")"}], " ", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x1", "-", "y1"}], ")"}], "2"], "+", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x2", "-", "y2"}], ")"}], "2"], "+", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x3", "-", "y3"}], ")"}], "2"]}]], " ", 
+     RowBox[{"(", 
+      RowBox[{"x3", "-", "y3"}], ")"}]}], "+", 
+    RowBox[{"3", " ", "x1", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"x3", "-", "y3"}], ")"}], "2"], " ", 
+     RowBox[{"ArcTan", "[", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x1", "-", "y1"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"x2", "-", "y2"}], ")"}]}], 
+       RowBox[{
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x1", "-", "y1"}], ")"}], "2"], "+", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x2", "-", "y2"}], ")"}], "2"], "+", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x3", "-", "y3"}], ")"}], "2"]}]], " ", 
+        RowBox[{"(", 
+         RowBox[{"x3", "-", "y3"}], ")"}]}]], "]"}]}], "+", 
+    RowBox[{"3", " ", "x1", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"x2", "-", "y2"}], ")"}], "2"], " ", 
+     RowBox[{"ArcTan", "[", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x1", "-", "y1"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"x3", "-", "y3"}], ")"}]}], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x2", "-", "y2"}], ")"}], " ", 
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x1", "-", "y1"}], ")"}], "2"], "+", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x2", "-", "y2"}], ")"}], "2"], "+", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x3", "-", "y3"}], ")"}], "2"]}]]}]], "]"}]}], "+", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"x1", "-", "y1"}], ")"}], "2"], " ", 
+     RowBox[{"(", 
+      RowBox[{"x1", "+", 
+       RowBox[{"2", " ", "y1"}]}], ")"}], " ", 
+     RowBox[{"ArcTan", "[", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x2", "-", "y2"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"x3", "-", "y3"}], ")"}]}], 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x1", "-", "y1"}], ")"}], " ", 
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x1", "-", "y1"}], ")"}], "2"], "+", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x2", "-", "y2"}], ")"}], "2"], "+", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x3", "-", "y3"}], ")"}], "2"]}]]}]], "]"}]}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"x3", "-", "y3"}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"6", " ", "x1", " ", 
+        RowBox[{"(", 
+         RowBox[{"x2", "-", "y2"}], ")"}], " ", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox[
+          RowBox[{
+           RowBox[{"-", "x1"}], "+", "y1"}], 
+          SqrtBox[
+           RowBox[{
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x1", "-", "y1"}], ")"}], "2"], "+", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x2", "-", "y2"}], ")"}], "2"], "+", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x3", "-", "y3"}], ")"}], "2"]}]]], "]"}]}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "3"}], " ", 
+           SuperscriptBox["x1", "2"]}], "+", 
+          RowBox[{"3", " ", 
+           SuperscriptBox["y1", "2"]}], "+", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"x3", "-", "y3"}], ")"}], "2"]}], ")"}], " ", 
+        RowBox[{"ArcTanh", "[", 
+         FractionBox[
+          RowBox[{"x2", "-", "y2"}], 
+          SqrtBox[
+           RowBox[{
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x1", "-", "y1"}], ")"}], "2"], "+", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x2", "-", "y2"}], ")"}], "2"], "+", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"x3", "-", "y3"}], ")"}], "2"]}]]], "]"}]}]}], ")"}]}], 
+    "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "3"}], " ", 
+        SuperscriptBox["x1", "2"]}], "+", 
+       RowBox[{"3", " ", 
+        SuperscriptBox["y1", "2"]}], "+", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x2", "-", "y2"}], ")"}], "2"]}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{"x2", "-", "y2"}], ")"}], " ", 
+     RowBox[{"ArcTanh", "[", 
+      FractionBox[
+       RowBox[{"x3", "-", "y3"}], 
+       SqrtBox[
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"x1", "-", "y1"}], ")"}], "2"], "+", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"x2", "-", "y2"}], ")"}], "2"], "+", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"x3", "-", "y3"}], ")"}], "2"]}]]], "]"}]}]}], 
+   ")"}]}]], "Output",
+ CellChangeTimes->{3.815744282762927*^9},
+ CellLabel->
+  "Out[484]=",ExpressionUUID->"b74df01a-f494-4d74-a6fe-b336320abf28"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8157442781500483`*^9, 3.815744278153761*^9}},
+ CellLabel->
+  "In[485]:=",ExpressionUUID->"2c47b74e-599e-4b82-b140-f0a8de0a2e64"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"The", " ", "triple", " ", "anti"}], "-", 
+     RowBox[{"derivative", " ", 
+      RowBox[{"w", ".", "r", ".", "t", ".", " ", "y1"}]}]}], ",", "y2", ",", 
+    RowBox[{"y3", " ", "thus", " ", "is", " ", "given", " ", "as", " ", 
+     RowBox[{"follows", ".", " ", "A"}], " ", "check", " ", 
+     RowBox[{"below", "."}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"expr", " ", "=", 
+     RowBox[{
+      RowBox[{
+       FractionBox["1", "2"], 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          SuperscriptBox["X", "2"], "*", 
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["Y", "R"], 
+            FractionBox["Z", "R"], 
+            FractionBox["R", "X"]}], "]"}]}], "+", 
+         RowBox[{
+          SuperscriptBox["Y", "2"], "*", 
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], 
+            FractionBox["Z", "R"], 
+            FractionBox["R", "Y"]}], "]"}]}], "+", 
+         RowBox[{
+          SuperscriptBox["Z", "2"], "*", 
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            FractionBox["X", "R"], 
+            FractionBox["Y", "R"], 
+            FractionBox["R", "Z"]}], "]"}]}]}], ")"}]}], "-", 
+      RowBox[{"X", "*", "Y", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Z", "R"], "]"}]}], "-", 
+      RowBox[{"X", "*", "Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["Y", "R"], "]"}]}], "-", 
+      RowBox[{"Y", "*", "Z", "*", 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox["X", "R"], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"expr", " ", "=", " ", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"D", "[", 
+       RowBox[{"expr", ",", "y1"}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"expr", " ", "=", " ", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"D", "[", 
+       RowBox[{"expr", ",", "y2"}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"expr", " ", "=", " ", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"D", "[", 
+       RowBox[{"expr", ",", "y3"}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "expr"}]}]], "Input",
+ CellChangeTimes->{{3.724766377595978*^9, 3.72476641816224*^9}, {
+   3.724766452357765*^9, 3.72476656774648*^9}, {3.724766947054036*^9, 
+   3.7247669893244543`*^9}, {3.7247670214702883`*^9, 3.724767027109736*^9}, {
+   3.724767103414152*^9, 3.724767146107568*^9}, {3.724767512991839*^9, 
+   3.7247675252705593`*^9}, {3.8157437184587507`*^9, 
+   3.8157437191640778`*^9}, {3.8157438553673773`*^9, 
+   3.8157438944211187`*^9}, {3.8157439789890337`*^9, 
+   3.8157440164442263`*^9}, {3.815744057845817*^9, 3.815744106190426*^9}, 
+   3.815744205607025*^9, {3.815744240986164*^9, 3.815744268407741*^9}},
+ CellLabel->
+  "In[486]:=",ExpressionUUID->"53b88119-d5b5-4672-a579-81ef0d7f853b"],
+
+Cell[BoxData[
+ FractionBox["1", 
+  SqrtBox[
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x1", "-", "y1"}], ")"}], "2"], "+", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x2", "-", "y2"}], ")"}], "2"], "+", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x3", "-", "y3"}], ")"}], "2"]}]]]], "Output",
+ CellChangeTimes->{{3.815743837399214*^9, 3.815743864368958*^9}, 
+   3.8157439721039343`*^9, 3.815744019158071*^9, {3.81574405505328*^9, 
+   3.8157440759845943`*^9}, 3.815744107788662*^9, 3.815744177720107*^9, 
+   3.815744282796694*^9},
+ CellLabel->
+  "Out[490]=",ExpressionUUID->"8b139fe3-f137-4a17-91d6-b69bafbf23ea"]
+}, Open  ]]
+},
+WindowSize->{1502.608695652174, 678.5217391304349},
+WindowMargins->{{Automatic, -2.347826086956502}, {
+  28.17391304347825, Automatic}},
+FrontEndVersion->"12.1 for Linux x86 (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"348f5e63-f259-4a88-9be8-5472b90c12b1"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1337, 37, 110, "Input",ExpressionUUID->"fd90cec2-d54f-4bfe-b7e5-f80fd01f2298",
+ InitializationCell->True],
+Cell[1898, 59, 4384, 86, 128, "Input",ExpressionUUID->"3457a314-dae9-4201-9389-a8bba812c499",
+ InitializationCell->True],
+Cell[6285, 147, 27249, 802, 1369, "Input",ExpressionUUID->"72596d81-e8a6-40d4-bd19-8b2bb93ad8b1",
+ InitializationCell->True],
+Cell[33537, 951, 27413, 806, 1371, "Input",ExpressionUUID->"e2ebb163-93b8-4cc1-9568-f0715dc50232",
+ InitializationCell->True],
+Cell[60953, 1759, 27687, 808, 1349, "Input",ExpressionUUID->"14ef584f-cb47-470f-93d3-6e7e2b209036",
+ InitializationCell->True],
+Cell[88643, 2569, 27983, 815, 1349, "Input",ExpressionUUID->"e0093485-311a-4bab-b166-37eae5e74d30",
+ InitializationCell->True],
+Cell[116629, 3386, 27326, 803, 1349, "Input",ExpressionUUID->"5799481f-5b88-451f-b39f-6360f9909dda",
+ InitializationCell->True],
+Cell[143958, 4191, 26738, 797, 1349, "Input",ExpressionUUID->"cc7e87a5-783f-4d7c-8cc9-63f5b3198bd7",
+ InitializationCell->True],
+Cell[CellGroupData[{
+Cell[170721, 4992, 2936, 60, 44, "Input",ExpressionUUID->"bcb27ea3-0c3f-4530-993e-1b045a15932c"],
+Cell[173660, 5054, 5596, 178, 198, "Output",ExpressionUUID->"b74df01a-f494-4d74-a6fe-b336320abf28"]
+}, Open  ]],
+Cell[179271, 5235, 177, 3, 29, InheritFromParent,ExpressionUUID->"2c47b74e-599e-4b82-b140-f0a8de0a2e64"],
+Cell[CellGroupData[{
+Cell[179473, 5242, 2959, 77, 149, "Input",ExpressionUUID->"53b88119-d5b5-4672-a579-81ef0d7f853b"],
+Cell[182435, 5321, 657, 18, 54, "Output",ExpressionUUID->"8b139fe3-f137-4a17-91d6-b69bafbf23ea"]
+}, Open  ]]
+}
+]
+*)
+

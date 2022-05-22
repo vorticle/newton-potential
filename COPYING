@@ -1,0 +1,14 @@
+The folders:
+ - boxpot
+ - examples
+contain the boxpot-library and usage examples and are lincenced under the terms
+of the Lesser GNU General Public License, version three, or at your option any
+later version (LGPLv3+).
+
+The folder:
+ - general
+contains an implementation of the method described in section 5 of the paper,
+it approximates the Newton potential of a non-polynomial function f. This
+folder is *not licensed under the LGPL*, but the GPL (GNU General Public License),
+version three, or at your option, any later version. (GPLv3+)
+

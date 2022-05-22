@@ -1,0 +1,12 @@
+The program "compute_interaction_matrices" is independent of the rest of
+this software. It can be used to pre-compute the interaction matrices.
+(Who would have thought?)
+
+Compile using:
+
+g++ -O3 -fopenmp -I. compute_interaction_matrices.cpp -o compute_interaction_matrices -lgmp
+
+Note that this distribution already comes with a set of pre-computed
+interaction matrices for orders n = 1, 2, 3, 4. It thus should not be
+necessary to run this program. They can be found in the math folder.
+

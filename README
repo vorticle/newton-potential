@@ -1,0 +1,31 @@
+boxpot is a library for analytically evaluating the Newton potential in
+arbitrary precision arithmetic. The mathematical background and the usage
+of the library is documented in the following article:
+
+Matthias Kirchhard and Donat Weniger. "Analytic Integration of the Newton
+Potential over Cuboids and an Application to Fast Multipole Methods",
+Journal of Numerical Mathematics. DOI: 10.1515/jnma-2020-0103
+
+boxpot is a header-only library. Simply copy the boxpot folder to a suitable
+location, e.g., /usr/local/include on unix systems.
+
+boxpot is released under the terms and conditions of the GNU Lesser General
+Public License, version 3, or, at your option, any later version.
+
+The "examples" folder contains the examples described in the paper. In order
+to compile them, you require the Boost.Multiprecision library and the GNU
+Multiprecision library. In the example folder, when using GCC, simply run
+
+g++ -I..      eval_example.cpp -o      eval_example -lgmp
+g++ -I.. hackbusch_example.cpp -o hackbusch_example -lgmp
+g++ -I..     table_example.cpp -o     table_example -lgmp
+
+and change the -I directive to whatever directory contains the boxpot
+folder.
+
+The folder "general" contains the fast multipole method example described
+in Section 5 of the article. It is *NOT* licensed under the LGPL, but the
+(full) GPL. In order to compile this you will need the Armadillo C++ library
+(http://arma.sourceforge.net) and an implementation of the BLAS. We used
+OpenBLAS (http://www.openblas.net) for our experiments.
+
